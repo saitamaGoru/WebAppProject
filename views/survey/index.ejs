@@ -1,0 +1,78 @@
+<%- include ('../partials/header.ejs')  %>
+
+<%- include ('../partials/main-nav.ejs')  %>
+
+<!---<div class="container-fluid bgclr apprnceBg"style="padding-bottom:2%">-->
+    <div class="container-fluid text-center  mt-1"></div>
+    <div class="row">
+        <div class="col">
+
+            <div class="row hdBg">
+
+                <h1 class="mainheading "style="text-align:center; margin-top:9px "><b>Surveys</b></h1>
+        
+            </div>
+            <% if (typeof displayName == 'string' && displayName) { %>
+            <a href="/survey-list/add" class="btn btn-primary"  role="button">
+                <i class="fas fa-plus-circle">Add a survey</i></a>
+                <% } %>
+           <br>
+           <table class="table table-bordered table-striped table-hover">
+            <!--Header row-->
+            <tr>
+                <% if (typeof displayName == 'string' && displayName) { %>
+                    <th class="text-center col-sm-auto">Survey</th>
+                    <th class="text-center col-sm-auto">First Name</th>
+                    <th class="text-center col-sm-auto">Last Name</th>
+                    <th class="text-center col-sm-auto">Rate the Product</th>
+                    <th class="text-center col-sm-auto">Feedback</th>
+                    <th class = "text-center col-sm-auto" ></th>
+                    <th class = "text-center col-sm-auto" ></th>
+                <% } else { %>
+                    <th class="text-center col-sm-auto">Survey</th>
+                    <th class="text-center col-sm-auto">First Name</th>
+                    <th class="text-center col-sm-auto">Last Name</th>
+                    <th class="text-center col-sm-auto">Rate the Product</th>
+                    <th class="text-center col-sm-auto">Feedback</th>
+                <% } %>
+
+            </tr>
+                <% for( let count = 0; count < surveyList.length; count++ ) { %>
+                    <tr>
+                        <% if (typeof displayName == 'string' && displayName) { %> 
+                            <td class="text-center col-md-auto"><%= surveyList[count].survey %>  </td>
+                            <td class="text-center col-md-auto"><%= surveyList[count].fname %></td>
+                            <td class="text-center col-md-auto"><%= surveyList[count].lname %></td>
+                            <td class="text-center col-md-auto"><%= surveyList[count].Ratetheproduct %></td>
+                            <td class="text-center col-md-auto"><%= surveyList[count].feedback %></td>
+                            <td class ="text-center col-md-auto">
+                                <a href="/survey-list/edit/<%= surveyList[count]._id %>" class="btn btn-primary btn-sm ">
+                                    <i class="fas fa-pencil alt"></i>Edit
+                                
+                                </a>
+                                </td>
+                                <td class ="text-center col-md-auto">
+                                    <a href="/survey-list/delete/<%= surveyList[count]._id %>" class="btn btn-danger btn-sm">
+                                        <i class="fas fa-trash alt"></i>Delete
+                                    
+                                    </a>
+                                </td>
+                                <% } else { %>
+                                    <td class="text-center col-md-auto"><%= surveyList[count].survey %>  </td>
+                                    <td class="text-center col-md-auto"><%= surveyList[count].fname %></td>
+                                    <td class="text-center col-md-auto"><%= surveyList[count].lname %></td>
+                                    <td class="text-center col-md-auto"><%= surveyList[count].Ratetheproduct %></td>
+                                    <td class="text-center col-md-auto"><%= surveyList[count].feedback %></td>
+                                    <% } %>
+                    </tr>
+                
+                <% } %>
+           </table>
+        </div>
+    </div>
+    </div>
+<!--</div>-->
+
+<%- include ('../partials/bottom-nav.ejs')  %>
+   
+<%- include ('../partials/footer.ejs')  %>

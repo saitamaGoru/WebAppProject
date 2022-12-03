@@ -1,0 +1,51 @@
+
+<%- include ('partials/header.ejs')  %>
+
+
+
+
+
+
+
+
+
+<main class ="container-fluid mt-3">
+
+    <div class="row row-cols-auto">
+        
+        
+        <div class="col-sm-auto"style="margin:auto;"><h1 style="text-align: center;font-size:70px">Survey<h2>
+
+            <div class="col-lg-auto"style="margin:auto"><h2 >Welcome<h2>
+                <br>
+                <% if (title == "contact") { %>
+                    <a href="/survey-list" class="btn btn1"role="button"style="color:white">Surveys</a>
+                   <% } %>
+                <p class="font-">
+                 Survey
+                </p>
+                
+        
+            </div>
+                <div class="cols-sm-auto"style="margin-top:10%;text-align:center">
+                    <button class="btn btn1"><a href="/about"style="color:white">About Me</a></button>
+                    <button class="btn btn1"><a href="/projects"style="color:white">Projects</a></button>
+                    <button class="btn btn1"><a href="/contact"style="color:white">Contact</a></button>
+                    <button class="btn btn1"><a href="/services"style="color:white">Services</a></button>
+                    
+
+                </div>
+                
+
+
+
+        </div>
+       
+    </div>
+</div>
+
+</main>
+
+<%- include ('partials/bottom-nav.ejs')  %>
+   
+<%- include ('partials/footer.ejs')  %>
