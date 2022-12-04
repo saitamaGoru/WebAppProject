@@ -4,7 +4,7 @@ let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 
-// models for authentication 
+// models for authentication
 let session = require('express-session');
 let passport = require('passport');
 
@@ -26,7 +26,7 @@ let app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//database setup 
+//database setup
 let mongoose = require('mongoose');
 let db = require('./db');
 
@@ -44,7 +44,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.static(path.join(__dirname, 'node_modules')));
+app.use(express.static(path.join(__dirname, 'node_modules')));app.use(express.static(path.join(__dirname, 'node_modules')));
 app.use(session({
   secret:"SomeSecret",
   saveUninitialized:false,
