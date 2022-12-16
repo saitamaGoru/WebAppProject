@@ -1,5 +1,5 @@
 <%- include ../partials/header.ejs %>
-<%- include ../partials/main_nav.ejs %> 
+<%- include ../partials/main_nav.ejs %>
 <div class="container pt-5">
     <div class="h5 shadow-sm p-1 border-4 border-start "><%= title %></div>
     <div class="table-responsive shadow-lg">
@@ -23,7 +23,7 @@
                     <td><%= surveyList[count].createBy.displayName %></td>
                     <td class="">
                         <a href="/survey/<%= surveyList[count].id %>" class="btn btn-success btn-md ">
-                            <i class="bi bi-pen"></i> do</a></td>
+                            <i class="bi bi-pen"></i> Do Survey</a></td>
                 </tr>
                 <% } %>
                 <% } else { %>
@@ -36,4 +36,4 @@
     </div>
 </div>
 <%- include ../partials/bottom_nav.ejs %>
-<%- include ../partials/footer.ejs %> 
+<%- include ../partials/footer.ejs %>

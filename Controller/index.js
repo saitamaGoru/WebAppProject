@@ -3,9 +3,9 @@ let router = express.Router();
 let mongoose = require('mongoose');
 let passport = require('passport');
 let jwt = require('jsonwebtoken');
-let db = require('../db');
+let db = require('../db.js.old');
 let userModel = require('../models/user');
-let User = userModel.User; 
+let User = userModel.User;
 
 module.exports.displayMainPage = (req, res, next) => {
     res.render('index', {title: 'Home', displayName: req.user ? req.user.displayName : ''});
@@ -28,11 +28,11 @@ module.exports.displayLoginPage = (req, res, next) => {
     // check if the user is already logged in
     if(!req.user)
     {
-        res.render('auth/login', 
+        res.render('auth/login',
         {
            title: "Login",
            messages: req.flash('loginMessage'),
-           displayName: req.user ? req.user.displayName : '' 
+           displayName: req.user ? req.user.displayName : ''
         })
     }
     else
@@ -78,7 +78,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 displayname:user.displayName,
                 username: user.username,
                 email: user.email
-               
+
             }, token: authToken});*/
             return res.redirect('/survey-list');
         });
@@ -132,8 +132,8 @@ module.exports.processRegisterPage = (req, res, next) => {
         }
         else
         {
-          
-          
+
+
             return passport.authenticate('local')(req, res, () => {
                 res.redirect('/survey-list')
             });
@@ -148,5 +148,5 @@ module.exports.performLogout = ((req,res)=> {
         }
         res.redirect('/');
     });
-   
+
 });

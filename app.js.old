@@ -28,7 +28,7 @@ app.set('view engine', 'ejs');
 
 //database setup
 let mongoose = require('mongoose');
-let db = require('./db');
+let db = require('./db.js.old');
 
 mongoose.connect(db.URI);
 
