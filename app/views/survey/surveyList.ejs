@@ -1,0 +1,39 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %> 
+<div class="container pt-5">
+    <div class="h5 shadow-sm p-1 border-4 border-start "><%= title %></div>
+    <div class="table-responsive shadow-lg">
+        <table class="table table-hover border-1 ">
+            <thead  class="p-4 bg-secondary text-white text-center">
+                <tr >
+                    <td>Survey Title</td>
+                    <td>Start Date </td>
+                    <td>End Date </td>
+                    <td>Username</td>
+                    <td class="text-center">Action</td>
+                </tr>
+            </thead>
+            <tbody class="text-center">
+                <% if (surveyList.length > 0) { %>
+                <% for(let count = 0; count < surveyList.length; count++) { %>
+                <tr >
+                    <td><%= surveyList[count].title %></td>
+                    <td><%= surveyList[count].startDate %></td>
+                    <td><%= surveyList[count].endDate %></td>
+                    <td><%= surveyList[count].createBy.displayName %></td>
+                    <td class="">
+                        <a href="/survey/<%= surveyList[count].id %>" class="btn btn-success btn-md ">
+                            <i class="bi bi-pen"></i> do</a></td>
+                </tr>
+                <% } %>
+                <% } else { %>
+                <tr>
+                    <td class="text-center" colspan="5">No Survey Currently</td>
+                </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</div>
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %> 

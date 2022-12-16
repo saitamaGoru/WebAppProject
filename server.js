@@ -4,15 +4,15 @@
  * Module dependencies.
  */
 
-var app = require('./app');
-var debug = require('debug')('comp229-group3project:server');
+var app = require('./config/app');
+var debug = require('debug')('G3surveysite:server');
 var http = require('http');
 
 /**
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(process.env.PORT || '3100');
+var port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
 /**

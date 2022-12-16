@@ -1,0 +1,41 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/main_nav.ejs %>
+
+<% if (title == "Login") { %>
+
+    <main class="container">
+        <% if(messages.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= messages %>
+            </div>
+        <% } %>
+
+        <div class="container pt-5 ">
+            <div class="col-6 m-auto shadow-sm p-3">
+                <h1 class="text-center">LOGIN</h1>
+                <form action="" method="POST" class="form ">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">USERNAME</label>
+                        <input type="text" name="username" class="form-control" id="username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">PASSWORD</label>
+                        <input type="password" name="password" class="form-control" id="password">  
+                        <br>                      
+                        <a href="/register" class="text-decoration-none border-3">REGISTER HERE</a>
+                        <br><br>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between">
+                        
+                        <button class="btn btn-primary form-control">LOG IN</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+<% } else { %>
+<% } %>
+
+<%- include ../../partials/bottom_nav.ejs %>
+<%- include ../../partials/footer.ejs %>

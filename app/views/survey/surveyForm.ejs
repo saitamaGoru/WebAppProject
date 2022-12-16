@@ -1,0 +1,37 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<div class="container pt-5">
+    <div class="h5 shadow-sm p-2 border-4 border-start  border-success" ><%= surveyInfo.title %></div>
+    <form method="POST">
+        <% count = 1 %>
+        <div id="question-list">
+
+            <% for(var i=0; i< surveyInfo.questions.length; i++) {%>
+                <div id="question<%= i %>" data-question-id="<%= i %>" class="question card my-5 border-0 shadow-lg ">
+                    <div class="card-body">
+                        <div class="mb-3">
+                            <label class="form-label h5  p-1 border-4 border-start"><%= surveyInfo.questions[i].title %></label>
+                            <% if( surveyInfo.questions[i].questionType == 'st' ){ %>
+                            <textarea class="form-control" rows="3" id="answer" name="answer"></textarea>
+                            <% } else if ( surveyInfo.questions[i].questionType == 'mc' ){ %>
+                            <div class="answer-list">
+                                <% for(var count=0; count < surveyInfo.questions[i].answers.length; count++) { %>
+                                <div class="answer d-flex align-items-center mb-3">
+                                    <label class="form-label">
+                                        <input name="surveyInfo.questions[<%= i %>][answers][<%= count %>]" value="<%= surveyInfo.questions[i].answers[count] %>" class="form-check-input" type="radio">
+                                        <%= surveyInfo.questions[i].answers[count] %>
+                                    </label>
+                                </div>
+                                <% } %>
+                            </div>
+                            <% } %>
+                            <button class="btn btn-primary my-4" type="submit">Submit</button>
+                    </div>
+                </div>
+             <% } %>
+        </div><!-- end question list-->
+    </form>
+</div>
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %>

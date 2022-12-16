@@ -1,0 +1,28 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/main_nav.ejs %>
+
+<div class="container pt-5">
+    <div class="col-6 m-auto">
+        <h1><%= title %></h1>
+        <form action="" method="POST" class="form">
+            <div class="mb-3">
+                <label for="inputUsername" class="form-label">Username</label>
+                <input type="text" name="inputUsername" class="form-control" id="inputUsername">
+            </div>
+            <div class="mb-3">
+                <label for="inputEmail" class="form-label">Email address</label>
+                <input type="email" name="inputEmail" class="form-control" id="inputEmail">
+            </div>
+            <div class="mb-3">
+                <label for="inputPassword" class="form-label">Password</label>
+                <input type="password" name="inputPassword" class="form-control" id="inputPassword">
+            </div>
+            <div class="mb-3 d-flex justify-content-between">
+                <a href="/" class="btn btn-outline-secondary">Cancel</a>
+                <button class="btn btn-primary">Register</button>
+            </div>
+        </form>
+    </div>
+</div>
+<%- include ../../partials/bottom_nav.ejs %>
+<%- include ../../partials/footer.ejs %>

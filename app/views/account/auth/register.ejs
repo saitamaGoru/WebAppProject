@@ -1,0 +1,54 @@
+<%- include ../../partials/header.ejs %>
+<%- include ../../partials/main_nav.ejs %>
+
+<% if (title == "Register") { %>
+
+
+    <!--main content-->
+    <main class="container">
+        <% if(messages.length > 0) { %>
+            <div class="alert alert-danger">
+                <%= messages %>
+            </div>
+        <% } %>
+
+        <div class="container pt-5">
+            <div class="col-6 m-auto">
+                <h1 class="text-center"><%= title %></h1>
+                <form action="" method="POST" class="form">
+                    <div class="mb-3">
+                        <label for="username" class="form-label">   USERNAME</label>
+                        <input type="text" name="username" class="form-control" id="username"
+                               placeholder="Enter username" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">EMAILL ADDRESS</label>
+                        <input type="email" name="email" class="form-control" id="email" placeholder="Enter email"
+                               required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="password" class="form-label">PASSWORD</label>
+                        <input type="password" name="password" class="form-control" placeholder="Enter password"
+                               id="password" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="displayName" class="form-label">DISPLAY NAME</label>
+                        <input type="text" name="displayName" class="form-control" placeholder="Enter your display name"
+                               id="displayName" required>
+                    </div>
+                    <div class="mb-3 d-flex justify-content-between">
+                        <a href="/" class="btn btn-outline-secondary">CANCEL</a>
+                        <button class="btn btn-primary">REGISTER</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </main>
+
+<% } else { %>
+<% } %>
+
+<%- include ../../partials/bottom_nav.ejs %>
+<%- include ../../partials/footer.ejs %>

@@ -1,0 +1,13 @@
+a{
+    color: #363538;
+}
+.nav-link {
+    color: #363538;
+  }
+  .nav-link:hover {
+    color: #0a58ca;
+    text-decoration: none;
+  }
+  .logout-link:hover{
+  text-decoration: none;
+  }

@@ -24,7 +24,7 @@ export class LoginComponent extends BasePageComponent implements OnInit {
     this.user = new User
   }
 
-/*
+
   authenticate(form:NgForm): void {
     if (form.valid) {
       // Perform authentication
@@ -38,5 +38,5 @@ export class LoginComponent extends BasePageComponent implements OnInit {
       this.error = 'Form Data Invalid';
     }
   }
-  */
+
 }

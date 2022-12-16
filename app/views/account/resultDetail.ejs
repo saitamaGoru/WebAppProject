@@ -1,0 +1,48 @@
+<%- include ../partials/header.ejs %>
+<%- include ../partials/main_nav.ejs %>
+
+<div class="container pt-5">
+    <h1 class="h5   p-1 border-4 border-start  pb-2"><%= title %></h1>
+    <form method="POST" class="form my-4">
+        <div class="card my-4 border-0  shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="q1" class="form-label">1. blablabla?</label>
+                    <textarea name="a1" class="form-control" id="q1" rows="3" disabled>blablabla</textarea>
+                    <input type="hidden" value="st">
+                </div>
+            </div>
+        </div>
+        <div class="card mb-3 border-0 shadow-sm">
+            <div class="card-body">
+                <div class="mb-3">
+                    <label for="q2" class="form-label">2. blablabla?</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="a2" id="a20" disabled checked>
+                        <label class="form-check-label" for="a20">A</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="a2" id="a21" disabled>
+                        <label class="form-check-label" for="a21">B</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="a2" id="a22" disabled>
+                        <label class="form-check-label" for="a22">C</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="a2" id="a23" disabled>
+                        <label class="form-check-label" for="a23">D</label>
+                    </div>
+                    <input type="hidden" value="st">
+                </div>
+
+
+            </div>
+        </div>
+        <div class="text-end">
+            <a class="btn btn-primary " href="/account/viewSurvey/1">Cancel</a>
+        </div>
+    </form>
+</div>
+<%- include ../partials/bottom_nav.ejs %>
+<%- include ../partials/footer.ejs %> 

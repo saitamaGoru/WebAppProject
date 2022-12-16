@@ -1,0 +1,198 @@
+<%- include ../partials/header.ejs %>
+  <%- include ../partials/main_nav.ejs %>
+    <!-- Main Content -->
+    <main class="container pt-5">
+      <div class="row">
+        <div class="col-12 m-auto">
+          <h1 class="h5   p-1 border-4 border-start  pb-2">
+            <%= title %>
+          </h1>
+          <form method="POST" class="my-4">
+            <div class="shadow-sm ps-4 ">
+
+              <div class="mb-3 row">
+                <label for="title" class="col-sm-2 col-form-label">Title</label>
+                <div class="col-sm-6">
+                  <input type="text" name="title" id="title" class="form-control" value="<%= surveyInfo.title %>">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="startDate" class="col-sm-2 col-form-label">Start Date</label>
+                <div class="col-sm-6 ">
+                  <div class="input-group">
+                    <input type="date" name="startDate" id="startDate" class="form-control"
+                      value="<%= surveyInfo.startDate %>" aria-describedby="basic-addon1">
+                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-calendar-date"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="endDate" class="col-sm-2 col-form-label">End Date</label>
+                <div class="col-sm-6 ">
+                  <div class="input-group">
+                    <input type="date" name="endDate" id="endDate" class="form-control"
+                      value="<%= surveyInfo.endDate %>" aria-describedby="basic-addon2">
+                    <span class="input-group-text" id="basic-addon2"><i class="bi bi-calendar-date"></i></span>
+                  </div>
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="status" class="col-sm-2 col-form-label">Status</label>
+                <div class="col-sm-6 ">
+                  <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" name="status" id="statusActive"
+                      value="<%= surveyInfo.status %>">
+                    <label class="form-check-label" for="statusActive">Active</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h2 class="h5   p-1 border-4 border-start  pb-2">Questions</h2>
+            <div id="question-list">
+              <% surveyInfo %>
+                <% for(var i=0; i< surveyInfo.questions.length; i++) {%>
+                  <div id="question<%= i %>" data-question-id="<%= i %>" class="question card mb-3 border-0 shadow-sm">
+                    <div class="card-body">
+                      <div class="mb-3">
+                        <div class="text-end">
+                          <a class="btn btn-outline-danger btn-sm removeQuestion">Remove Question</a>
+                        </div>
+                        <label class="form-label">Question</label>
+                        <input type="text" name="questions[<%= i %>][title]"
+                          value="<%= surveyInfo.questions[i].title %>"
+                          class="form-control mb-3 border-0 shadow-sm"></input>
+                        <% if( surveyInfo.questions[i].questionType=='st' ){ %>
+                          <input type="hidden" name="questions[<%= i %>][questionType]" value="st">
+                          <textarea class="form-control" rows="3" disabled></textarea>
+                          <% } else if ( surveyInfo.questions[i].questionType=='mc' ){ %>
+                            <div class="form-label">Answer</div>
+                            <div class="answer-list">
+                              <input type="hidden" name="questions[<%= i %>][questionType]" value="mc">
+                              <% for(let count=0; count < surveyInfo.questions[1].answers.length; count++) { %>
+                                <div class="answer d-flex align-items-center mb-3">
+                                  <input class="form-check-input" type="radio" disabled>
+                                  <input type="text" name="questions[<%= i %>][answers]" class="form-control ms-2"
+                                    value="<%= surveyInfo.questions[questionCount].answers[count] %>" />
+                                  <a class="btn btn-danger btn-sm ms-2 removeMcAnswer">Remove</a>
+                                </div>
+                                <% } %>
+                            </div>
+                            <div class="text-center pt-3">
+                              <a class="btn btn-primary addMcAnswer form-control" data-question="question2">Add
+                                answer</a>
+                            </div>
+                            <% } %>
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+            </div><!-- end question list-->
+
+            <div class="mb-3 text-center">
+              <a class="btn btn-primary addMCQuestion" role="button"><i class="fas fa-plus-circle"></i> Add
+                Multiple chooice question</a>
+              <a class="btn btn-primary addSTQuestion ms-2" role="button"><i class="fas fa-plus-circle"></i> Add
+                Single text question</a>
+            </div>
+            <hr class=" my-4">
+            <div class="mb-3 row">
+              <div class="text-end">
+                <a href="/account" class="btn btn-outline-secondary">cancel</a>
+                <button class="btn btn-success"><i class="bi bi-cloud-check"></i> Save</button>
+              </div>
+            </div>
+          </form>
+          <br /><br /><br /><br />
+        </div>
+      </div>
+    </main>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        var questiont_row = 2;
+
+        // Delete Question
+        $('#question-list').on('click', '.removeQuestion', function () {
+          var questionID = $(this).parents('.question').data('question-id');
+          $('#question' + questionID).remove();
+        });
+
+        // Add SingleText Question
+        $('.addSTQuestion').on("click", function () {
+          html = '<div id="question' + questiont_row + '" data-question-id="' + questiont_row + '" class="question card mb-3">';
+          html += '<div class="card-body">';
+          html += '<div class="mb-3">';
+          html += '<div class="text-end">';
+          html += '<a class="btn btn-outline-danger btn-sm removeQuestion">Remove Question</a>';
+          html += '</div>';
+          html += '<label class="form-label">Question</label>';
+          html += '<input type="text" name="questions[' + questiont_row + '][question]" value="" class="form-control mb-3"></input>';
+          html += '<input type="hidden" name="questions[' + questiont_row + '][questionType]" value="st">';
+          html += '<textarea class="form-control" rows="3" disabled></textarea>';
+          html += '</div>';
+          html += '</div>';
+          html += '</div>';
+
+          questiont_row++;
+
+          $('#question-list').append(html);
+        })
+
+        // Add Multiple Choice Question
+        $('.addMCQuestion').on("click", function () {
+          html = '<div id="question' + questiont_row + '" data-question-id="' + questiont_row + '" class="question card mb-3">';
+          html += '<div class="card-body">';
+          html += '<div class="mb-3">';
+          html += '<div class="text-end">';
+          html += '<a class="btn btn-outline-danger btn-sm removeQuestion">Remove Question</a>';
+          html += '</div>';
+          html += '<label class="form-label">Question</label>';
+          html += '<input type="text" name="questions[' + questiont_row + '][question]" value="" class="form-control mb-3"></input>';
+          html += '<input type="hidden" name="questions[' + questiont_row + '][questionType]" value="mc">';
+          html += '<div class="form-label">Answer</div>';
+          html += '<div class="answer-list">';
+          html += '<div class="answer d-flex align-items-center mb-3">';
+          html += '<input class="form-check-input" type="radio" disabled>';
+          html += '<input type="text" name="questions[' + questiont_row + '][answers]" class="form-control ms-2" value=""/>';
+          html += '<a class="btn btn-danger btn-sm ms-2 removeMcAnswer">Remove</a>';
+          html += '</div>';
+          html += '</div>';
+          html += '<div class="text-center pt-3">';
+          html += '<a class="btn btn-outline-primary addMcAnswer" data-question="question2">Add answer</a>';
+          html += '</div>';
+          html += '</div>';
+          html += '</div>';
+
+          questiont_row++;
+
+          $('#question-list').append(html);
+        })
+
+
+        // Add MC Answer
+        $('#question-list').on('click', '.addMcAnswer', function () {
+          var questionID = $(this).parents('.question').data('question-id');
+
+          html = '<div class="answer d-flex align-items-center mb-3">';
+          html += '<input class="form-check-input" type="radio" disabled>';
+          html += '<input type="text" name="questions[' + questionID + '][answers]" class="form-control ms-2" value=""/>';
+          html += '<a class="btn btn-danger btn-sm ms-2 removeMcAnswer">Remove</a>';
+          html += '</div>';
+
+          $('#question' + questionID + ' .answer-list').append(html);
+        });
+
+        $('#question-list').on('click', '.removeMcAnswer', function () {
+          $(this).parent('.d-flex').remove();
+        });
+      });
+    </script>
+
+    <!-- <script src="/js/bootstrap-datapicker/bootstrap-datepicker.js"></script>
+<link rel='stylesheet' href='/js/bootstrap-datapicker/bootstrap-datepicker.css'/>
+<script>
+    $('.datepicker').datepicker({
+        format: 'mm/dd/yyyy',
+    });
+</script> -->
+    <%- include ../partials/bottom_nav.ejs %>
+      <%- include ../partials/footer.ejs %>
